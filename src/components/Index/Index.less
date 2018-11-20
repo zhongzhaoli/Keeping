@@ -4,76 +4,138 @@
     justify-content: @justify;
     align-items: @align;
 };
-//属性
-.ke_banner{
-    .flex_center();
-    width: 100%;
-    max-height: 100vh;
-    overflow: hidden;
-    position: relative;
-    top:0;
-    left:0;
+.post_abso(@state: absolute, @top: 0, @left: 0){
+    position: @state;
+    top: @top;
+    left: @left;
 }
-.ke_banner video{
-    width:100%;
-    z-index: 0;
+.bg_img(@name){
+    background-image: url("../../assets/images/@{name}");
 }
-.kx_banner_header{
-    position: absolute;
-    top:0;
-    left:0;
-    z-index: 1;
-    width:100%;
-    padding: 20px;
-    .flex_center(space-between);
-    box-sizing: border-box;
+//ke开头的属性
+.ke {
+    &_banner{
+        .flex_center();
+        width: 100%;
+        max-height: 100vh;
+        overflow: hidden;
+        .post_abso(relative);
+        &:before{
+            width: 100%;
+            height: 100%;
+            .post_abso();
+            content: "";
+            background: rgba(0,0,0,0.45);
+            z-index: 1;
+        }
+    }
+    &_banner video{
+        width:100%;
+        z-index: 0;
+    }
+    &_banner_header{
+        .post_abso();
+        z-index: 1;
+        width:100%;
+        padding: 20px;
+        .flex_center(space-between);
+        box-sizing: border-box;
+    }
+    &_right_menu{
+        cursor: pointer;
+        color:white;
+    }
+    &_right_menu > i{
+        font-size:22px;
+    }
+    &_banner_text{
+        position: absolute;
+        z-index: 2;
+    }
+    &_banner_text > div{
+        color: white;
+        font-weight: lighter;
+        font-size:70px;
+        font-family: "wenyue";
+        letter-spacing: 15px;
+    }
+    &_body{
+        overflow: hidden;
+        background-color: #f2f2f2;
+    }
+    &_small_banner{
+        display: none;
+        width:100%;
+        height:400px;
+        // background: url("../../assets/images/banner.jpg");
+        .bg_img("banner.jpg");
+        background-size:cover;
+    }
+    &_why_big{
+        background-color: #f2f2f2;
+        padding:50px 0;
+        overflow: hidden;
+    }
+    &_why_title{
+        text-align: center;
+        font-family: "wenyue";
+    }
+    &_why_title > h1{
+        font-size:35px;
+        letter-spacing: 3px;
+    }
+    &_why_title > div{
+        font-size:25px;
+        color:silver;
+        letter-spacing: 2px;
+        padding-top:15px;
+    }
+    &_why_text_div > hr{
+        margin: 30px;
+    }
+    &_why_text_div{
+        padding: 50px;
+        box-sizing: border-box;
+    }
+    &_why_content{
+        line-height: 30px;
+        font-size: 17px;
+        color: #cacaca;
+        font-weight: lighter;
+    }
+    &_course_div{
+        padding: 60px 0;
+        .bg_img("bg.jpg");
+        &:before{
+            content: "";
+            .post_abso();
+            background:rgba(0,0,0,0.45);
+            width:100%;
+            height:100%;
+        }
+    }
+    
+    &_course_list > div:not(:last-child){
+        border-right: 1px rgba(255,255,255,0.25) solid;
+    }
+    &_course_list > div{
+        padding:20px;
+        box-sizing: border-box;
+    }
+    &_why_div{
+        background: white;
+        border:1px #eaeaea solid;
+    }
+    &_why_div > img{
+        width :100%;
+    }
 }
-.kx_right_menu{
-    cursor: pointer;
-    color:white;
-}
-.kx_right_menu > i{
-    font-size:22px;
-}
+//自定义属性
 .logo{
     color:white;
     font-family: 'rbno2';
     font-size:35px;
     letter-spacing: 10px;
-}
-.ke_banner:before{
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    content: "";
-    background: rgba(0,0,0,0.45);
-    z-index: 1;
-}
-.kx_banner_text{
-    position: absolute;
-    z-index: 2;
-}
-.kx_banner_text > div{
-    color: white;
-    font-weight: lighter;
-    font-size:70px;
-    font-family: "wenyue";
-    letter-spacing: 15px;
-}
-.kx_body{
-    background:red;
-    position: relative;
-    z-index: 1;
-    padding:300px 0;
-}
-.kx_small_banner{
-    display: none;
-    width:100%;
-    height:400px;
-    background: url("../../assets/images/banner.jpg");
-    background-size:cover;
 }
 .right_drawer{
     position: fixed;
@@ -83,17 +145,20 @@
     height: 100%;
     z-index: 1;
 }
+//媒体查询
 @media screen and (max-width: 900px){
-    .ke_banner video{
-        display: none;
-    }
-    .kx_small_banner{
-        display: block;
-    }
-    .ke_banner{
-        position: relative;
-    }
-    .kx_body{
-        margin-top:0;
+    .ke{
+        &_banner video{
+            display: none;
+        }
+        &_small_banner{
+            display: block;
+        }
+        &_banner{
+            position: relative;
+        }
+        &_body{
+            margin-top:0;
+        }
     }
 }
