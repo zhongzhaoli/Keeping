@@ -9,8 +9,73 @@
     top: @top;
     left: @left;
 }
-.bg_img(@name){
+.bg_img(@name, @state: 0){
     background-image: url("../../assets/images/@{name}");
+    & when (@state = 1){
+        background-size:cover;
+        background-position:center;
+    }
+}
+.logo{
+    color:white;
+    font-family: 'rbno2';
+    font-size:35px;
+    letter-spacing: 10px;
+}
+.right_drawer{
+    position: fixed;
+    background: black;
+    width: 400px;
+    right: -400px;
+    height: 100%;
+    z-index: 1;
+}
+//复用性属性
+.ke_why_big {
+    background-color: #f2f2f2;
+    padding:80px 0;
+    overflow: hidden;
+}
+.ke_why_title {
+    text-align: center;
+    font-family: "wenyue";
+    & > h1{
+        font-size:35px;
+        letter-spacing: 3px;
+    };
+    & > div{
+        font-size:25px;
+        color:silver;
+        letter-spacing: 2px;
+        padding-top:15px;
+    }
+}
+.ke_why_text_div {
+    padding: 50px;
+    box-sizing: border-box;
+    & > hr{
+        margin: 30px 0;
+    };
+}
+.ke_why_content {
+    line-height: 30px;
+    font-size: 17px;
+    color: #a8a8a8;
+    font-weight: lighter;
+}
+.ke_course_div{
+    padding: 60px 0;
+    background-attachment: fixed;
+    overflow: hidden;
+    position: relative;
+    .bg_img("bg.jpg", 1);
+    &:before{
+        content: "";
+        .post_abso();
+        background:rgba(0,0,0,0.65);
+        width:100%;
+        height:100%;
+    }
 }
 //ke开头的属性
 .ke {
@@ -28,10 +93,10 @@
             background: rgba(0,0,0,0.45);
             z-index: 1;
         }
-    }
-    &_banner video{
-        width:100%;
-        z-index: 0;
+        & video{
+            width:100%;
+            z-index: 0;  
+        }
     }
     &_banner_header{
         .post_abso();
@@ -44,20 +109,20 @@
     &_right_menu{
         cursor: pointer;
         color:white;
-    }
-    &_right_menu > i{
-        font-size:22px;
+        & > i{
+            font-size:22px;
+        };
     }
     &_banner_text{
         position: absolute;
         z-index: 2;
-    }
-    &_banner_text > div{
-        color: white;
-        font-weight: lighter;
-        font-size:70px;
-        font-family: "wenyue";
-        letter-spacing: 15px;
+        & > div{
+            color: white;
+            font-weight: lighter;
+            font-size:70px;
+            font-family: "wenyue";
+            letter-spacing: 15px;
+        }
     }
     &_body{
         overflow: hidden;
@@ -67,85 +132,113 @@
         display: none;
         width:100%;
         height:400px;
-        // background: url("../../assets/images/banner.jpg");
-        .bg_img("banner.jpg");
-        background-size:cover;
-    }
-    &_why_big{
-        background-color: #f2f2f2;
-        padding:50px 0;
-        overflow: hidden;
-    }
-    &_why_title{
-        text-align: center;
-        font-family: "wenyue";
-    }
-    &_why_title > h1{
-        font-size:35px;
-        letter-spacing: 3px;
-    }
-    &_why_title > div{
-        font-size:25px;
-        color:silver;
-        letter-spacing: 2px;
-        padding-top:15px;
-    }
-    &_why_text_div > hr{
-        margin: 30px;
-    }
-    &_why_text_div{
-        padding: 50px;
-        box-sizing: border-box;
-    }
-    &_why_content{
-        line-height: 30px;
-        font-size: 17px;
-        color: #cacaca;
-        font-weight: lighter;
-    }
-    &_course_div{
-        padding: 60px 0;
-        .bg_img("bg.jpg");
-        &:before{
-            content: "";
-            .post_abso();
-            background:rgba(0,0,0,0.45);
-            width:100%;
-            height:100%;
-        }
-    }
-    
-    &_course_list > div:not(:last-child){
-        border-right: 1px rgba(255,255,255,0.25) solid;
+        .bg_img("banner.jpg", 1);
     }
     &_course_list > div{
         padding:20px;
         box-sizing: border-box;
+        text-align: center;
+        &:not(:last-child){
+            border-right: 1px rgba(255,255,255,0.25) solid;
+        };
+        & > h1{
+            font-family: "wenyue";
+            color: white;
+            font-size:35px;
+            letter-spacing: 10px;
+        };
+        & .course_text{
+            color: #dbdbdb;
+            line-height:30px;
+            letter-spacing: 3px;
+        };
+        & .course_text, & button{
+            margin-top:15px;            
+        };
     }
     &_why_div{
         background: white;
         border:1px #eaeaea solid;
+        & > img{
+            width:100%;
+        }
     }
-    &_why_div > img{
-        width :100%;
+    &_button{
+        display: inline-block;
+        height: 38px;
+        line-height: 38px;
+        padding: 0 18px;
+        color: #fff;
+        background:transparent;
+        border: 1px #fff solid;
+        white-space: nowrap;
+        text-align: center;
+        font-size: 14px;
+        border-radius: 2px;
+        cursor: pointer;
+        transition: all .2s;
+        &:hover{
+            background-color: rgba(255, 255, 255, 0.075);
+        }
     }
-}
-//自定义属性
-.logo{
-    color:white;
-    font-family: 'rbno2';
-    font-size:35px;
-    letter-spacing: 10px;
-}
-.right_drawer{
-    position: fixed;
-    background: black;
-    width: 400px;
-    right: -400px;
-    height: 100%;
-    z-index: 1;
+    &_room_big:extend(.ke_why_big){};
+    &_room_div{
+        & > div{
+            &:first-child{
+                padding-right:30px;
+            };
+            &:last-child{
+                padding-left:30px;
+            };
+            & .room_text{
+                background:white;
+                padding: 30px;
+                & .room_title{
+                    &:extend(.ke_why_title);
+                    & > h1:extend(.ke_why_title > h1){};
+                    & > div:extend(.ke_why_title > div){};
+                };
+                & .room_content:extend(.ke_why_content){};
+                & > hr:extend(.ke_why_text_div > hr){};
+            };
+        };
+        & img{
+            width:100%;
+        }
+    }
+    &_us:extend(.ke_course_div){
+        text-align: center;
+        &:before{
+            &:extend(.ke_course_div:before);
+        }
+        & > h1{
+            position: relative;
+            font-family: "wenyue";
+            color: white;
+            font-size:35px;
+            letter-spacing: 10px;
+        }
+        & > .us_text{
+            position: relative;
+            color:white;
+            margin-top:20px;
+        }
+    }
 }
 //媒体查询
+@media screen and (max-width: 991px){
+    .ke_why_big{
+        padding:40px 0;
+    }
+    .ke_room_big:extend(.ke_why_big){};
+    .ke_room_div > div:first-child{
+        padding:0;
+    }
+    .ke_room_div > div:last-child{
+        padding:0;
+        margin-top:40px;
+    }
+}
 @media screen and (max-width: 900px){
     .ke{
         &_banner video{
@@ -159,6 +252,25 @@
         }
         &_body{
             margin-top:0;
+        }
+    }
+}
+@media screen and (max-width: 768px){
+    .ke{
+        &_course_div{
+            padding:0;
+        };
+        &_course_list > div{
+            border-right:none;
+            border-bottom: 1px rgba(255,255,255,0.25) solid;
+        }
+    }
+}
+@media screen and (max-width: 500px){
+    .ke{
+        &_banner_text > div{
+            font-size:50px;
+            letter-spacing: 10px;
         }
     }
 }
