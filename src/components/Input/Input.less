@@ -1,0 +1,48 @@
+//全局
+.flex_center(@justify: center, @align: center){
+    display: flex;
+    justify-content: @justify;
+    align-items: @align;
+};
+.post_abso(@state: absolute, @top: 0, @left: 0){
+    position: @state;
+    top: @top;
+    left: @left;
+}
+.bg_img(@name, @state: 0){
+    background-image: url("../../assets/images/@{name}");
+    & when (@state = 1){
+        background-size:cover;
+        background-position:center;
+    }
+}
+html,body,#app,section{
+    width:100%;
+    height:100%;
+}
+.ke_body{
+    width:100%;
+    height:100%;
+    background:#f2f2f2;
+    overflow: hidden;
+}
+.ke_input_div{
+    margin-top:30px;
+    padding:10px 20px 20px 20px;
+    box-sizing: border-box;
+    border-radius: 2px;
+    background:white;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);
+}
+.layui-tab{
+    margin:0;
+}
+.layui-tab-content{
+    padding:15px 0;
+}
+.layui-row{
+    margin-bottom:15px;
+}
+.padd-15{
+    padding-left:15px;
+}

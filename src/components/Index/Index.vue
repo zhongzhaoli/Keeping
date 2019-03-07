@@ -1,13 +1,20 @@
 <template>
     <section>
         <div class="right_drawer">
-            
+            <div class="ke_right_drawer_close_div">
+                <i class="layui-icon layui-icon-close" @click="right_menu()"></i>
+            </div>
+            <ul>
+                <li>首页</li>
+                <li>课程</li>
+                <li>加入我们</li>
+            </ul>
         </div>
         <div class="ke_banner">
             <div class="ke_banner_header">
                 <div class="logo">Keeping</div>
-                <div class="ke_right_menu">
-                    <i class="layui-icon layui-icon-shrink-right"></i>  
+                <div class="ke_right_menu" @click="right_menu()">
+                    <i class="layui-icon layui-icon-shrink-right"></i>
                 </div>
             </div>
             <div class="ke_banner_text">
@@ -101,3 +108,31 @@
 <style lang="less">
     @import "./index.less";
 </style>
+<script>
+    export default {
+        data() {
+            return{};
+        },
+        methods:{
+            right_menu(){
+                $(".right_drawer").toggleClass("right_drawer_show");
+            },
+            scorll_listen(){
+                window.onscroll= function(){
+                    let now_top = document.documentElement.scrollTop;
+                    if(now_top > 0){
+                        if(!$(".ke_banner_header").hasClass("ke_banner_fixed")){
+                            $(".ke_banner_header").addClass("ke_banner_fixed");
+                        }
+                    }
+                    else{
+                        $(".ke_banner_header").removeClass("ke_banner_fixed");
+                    }
+                }
+            }
+        },
+        created() {
+            this.scorll_listen();
+        }
+    }
+</script>

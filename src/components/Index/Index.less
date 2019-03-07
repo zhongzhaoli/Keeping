@@ -22,13 +22,33 @@
     font-size:35px;
     letter-spacing: 10px;
 }
+.right_drawer_show{
+    right:0 !important;
+}
 .right_drawer{
     position: fixed;
     background: black;
     width: 400px;
     right: -400px;
     height: 100%;
-    z-index: 1;
+    transition: 0.5s ease;
+    z-index: 4;
+    padding:25px;
+    box-sizing: border-box;
+    & ul{
+        margin-top:20px;
+    }
+    & ul li{
+        color: white;
+        padding: 15px;
+        font-size: 15px;
+        border-bottom: solid 1px rgba(255, 255, 255, 0.25);
+        letter-spacing: 2px;
+        cursor: pointer;
+    }
+    & ul li:last-child{
+        border-bottom:none;
+    }
 }
 //复用性属性
 .ke_why_big {
@@ -76,6 +96,9 @@
         height:100%;
     }
 }
+.layui-icon-close{
+    cursor: pointer;
+}
 //ke开头的属性
 .ke {
     &_banner{
@@ -97,13 +120,27 @@
             z-index: 0;  
         }
     }
+    &_banner_fixed{
+        position: fixed !important;
+        background:rgba(0,0,0,0.75);
+    }
+    &_right_drawer_close_div{
+        color:white;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        & > i{
+            font-size:25px;
+        }
+    }
     &_banner_header{
         .post_abso();
-        z-index: 1;
+        z-index: 3;
         width:100%;
         padding: 20px;
         .flex_center(space-between);
         box-sizing: border-box;
+        transition: all .2s;
     }
     &_right_menu{
         cursor: pointer;
@@ -270,5 +307,10 @@
             font-size:50px;
             letter-spacing: 10px;
         }
+    }
+    .right_drawer{
+        width: 100%;
+        right: -100%;
+        transition: all .3s;
     }
 }
